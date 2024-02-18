@@ -12,9 +12,6 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 
 int main() {
 
-    //Marca de inicio
-    auto inicio = std::chrono::high_resolution_clock::now();
-
     // Registrar la clase de la ventana
     WNDCLASS wc = {};
     wc.lpfnWndProc = WindowProc;
@@ -39,25 +36,12 @@ int main() {
     hEdit = vPasarMasyusculas::CrearCuadroTexto(hwnd);
     hButton = vPasarMasyusculas::CrearBotonConvertir(hwnd, hEdit);
 
-
-    // Agregado para medir el tiempo de ejecución
-    SetWindowText(hEdit, "mensaje en minusculas 123");
-    cPasarMayusculas::ClickBoton(hEdit);
-
-    // Comentado para medir el tiempo de ejecución
     // Bucle de mensajes
-    /*MSG msg = {};
+    MSG msg = {};
     while (GetMessage(&msg, nullptr, 0, 0)) {
         TranslateMessage(&msg);
         DispatchMessage(&msg);
-    }*/
-
-
-    // Marca de fin
-    auto fin = std::chrono::high_resolution_clock::now();
-    // Duración de ejecución
-    auto duracion = std::chrono::duration_cast<std::chrono::milliseconds>(fin - inicio);
-    std::cout << "Tiempo de ejecucion: " << duracion.count() << " milisegundos" << std::endl;
+    }
 
     return 0;
 }
